@@ -1,0 +1,156 @@
+<!-- <div>
+    <h1>{{ title }}</h1>
+    <form (submit)="searchHotels()">
+        <label for="location">Location:</label>
+        <input type="text" id="location" [(ngModel)]="location" name="location">
+
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="date" id="checkInDate" [(ngModel)]="checkInDate" name="checkInDate">
+
+        <label for="checkOutDate">Check-out Date:</label>
+        <input type="date" id="checkOutDate" [(ngModel)]="checkOutDate" name="checkOutDate">
+
+        <button type="submit">Search Hotels</button>
+    </form>
+
+    <div *ngIf="hotels.length > 0">
+        <h2>Available Hotels:</h2>
+        <ul>
+            <li *ngFor="let hotel of hotels">
+                {{ hotel.name }} - {{ hotel.price }} {{ hotel.currency }}
+            </li>
+        </ul>
+    </div>
+</div> -->
+
+
+
+<!--
+ORGINAL CODE -->
+<!-- <div>
+    <h1>{{ title }}</h1>
+    <form (submit)="searchHotels()">
+        <div class="mb-4">
+            <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location:</label>
+            <input type="text" id="location" [(ngModel)]="location" name="location"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-4">
+            <label for="checkInDate" class="block text-gray-700 text-sm font-bold mb-2">Check-in Date:</label>
+            <input type="date" id="checkInDate" [(ngModel)]="checkInDate" name="checkInDate"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-4">
+            <label for="checkOutDate" class="block text-gray-700 text-sm font-bold mb-2">Check-out Date:</label>
+            <input type="date" id="checkOutDate" [(ngModel)]="checkOutDate" name="checkOutDate"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <button type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Search Hotels
+        </button>
+    </form>
+
+    <div *ngIf="hotels.length > 0" class="mt-4">
+        <h2 class="text-xl font-bold mb-2">Available Hotels:</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div *ngFor="let hotel of hotels" class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="{{ hotel.image }}" alt="{{ hotel.name }}" class="w-full h-32 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-2">{{ hotel.name }}</h3>
+                    <p class="text-gray-700">${{ hotel.price }} {{ hotel.currency }}</p>
+                    <p class="text-gray-500">{{ hotel.location }}</p>
+                    <p class="text-gray-500">Rating: {{ hotel.rating }}</p>
+                    <a href="{{ hotel.link }}" class="text-blue-500 hover:underline">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div>
+    <h1>{{ title }}</h1>
+    <!-- <form (submit)="searchHotels()">
+        <label for="location">Location:</label>
+        <input type="text" id="location" [(ngModel)]="location" name="location">
+
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="date" id="checkInDate" [(ngModel)]="checkInDate" name="checkInDate">
+
+        <label for="checkOutDate">Check-out Date:</label>
+        <input type="date" id="checkOutDate" [(ngModel)]="checkOutDate" name="checkOutDate">
+
+        <button type="submit">Search Hotels</button>
+    </form> -->
+    <div>
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="date" id="checkInDate" [(ngModel)]="checkInDate">
+    </div>
+    <div>
+        <label for="checkOutDate">Check-out Date:</label>
+        <input type="date" id="checkOutDate" [(ngModel)]="checkOutDate">
+    </div>
+    <div>
+        <label for="destinationId">Destination:</label>
+        <input type="text" id="destinationId" [(ngModel)]="destinationId" hotel_id="get_destination($event)">
+    </div>
+    <button (click)="searchHotels()">Search Hotels</button>
+
+    <!-- Display hotels list -->
+    <div *ngIf="hotels.length > 0">
+        <h2>Hotels:</h2>
+        <ul>
+            <li *ngFor="let hotel of hotels">
+                {{ hotel.name }} - {{ hotel.address }}
+            </li>
+        </ul>
+    </div>
+
+
+    <div *ngIf="hotels.length > 0">
+        <h2>Available Hotels:</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <div *ngFor="let hotel of hotels"
+                class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white shadow-lg">
+                <div class="mx-4 mt-4 overflow-hidden rounded-xl shadow-md">
+                    <!-- Placeholder image for demonstration -->
+                    <img [src]="hotel.photoMainUrl" alt="Hotel Image" class="object-cover w-full h-48 " />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h5 class="block font-sans text-xl font-medium text-blue-gray-900">
+                            {{ hotel.name }}
+                        </h5>
+                        <p class="flex items-center gap-1.5 font-sans text-base font-normal text-blue-gray-900">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            5.0 <!-- Replace with dynamic rating -->
+                        </p>
+                    </div>
+                    <p class="block font-sans text-base text-gray-700">
+                        {{ hotel.description }}
+                    </p>
+                    <div class="flex items-center gap-3 mt-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-gray-500"></i>
+                            <span class="ml-2 text-sm text-gray-500">{{ hotel.location }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-dollar-sign text-gray-500"></i>
+                            <span class="ml-2 text-sm text-gray-500">{{ hotel.price }} {{ hotel.currency }}</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button
+                            class="block w-full py-2 px-4 text-center bg-gray-900 text-white rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800">
+                            Reviews
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

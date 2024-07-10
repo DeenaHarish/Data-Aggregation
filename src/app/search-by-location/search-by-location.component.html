@@ -1,0 +1,184 @@
+<!-- your-component.component.html -->
+<!-- <div>
+    <input type="text" [(ngModel)]="locationName" placeholder="Enter location" />
+    <button (click)="getDestId()">Get Destination ID</button>
+    <div *ngIf="destinationId">
+        <p>Destination ID: {{ destinationId }}</p>
+    </div>
+    <div *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+    </div>
+    <div *ngIf="hotels.length > 0">
+        <h2>Hotels:</h2>
+        <ul>
+            <li *ngFor="let hotel of hotels">
+                {{ hotel.name }} - {{ hotel.address }}
+            </li>
+        </ul>
+    </div>-->
+
+
+
+<!-- <link rel="stylesheet" type="text/css"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="flight-engine m-5">
+    <div class="container">
+        <div class="tabing flex justify-evenly">
+
+            <div class="tab-content ">
+                <div id="1" class="tab1 active">
+                    <div class="flight-tab row">
+                        <div class="persent-one">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <input type="text" name="dep" class="textboxstyle" id="dep" placeholder="location"
+                                [(ngModel)]="locationName">
+                        </div>
+
+                        <div class="persent-one less-per">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <input type="text" name="dep" class="textboxstyle" id="from-date1" placeholder="Check-In">
+                        </div>
+                        <div class="persent-one less-per">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <input type="text" name="dep" class="textboxstyle" id="to-date" placeholder="Check-Out">
+                        </div>
+                        <div class="persent-one less-btn">
+                            <button (click)="getDestId()" type="Submit" class="btn btn-info cst-btn"
+                                id="srch">search</button>
+                        </div>
+
+                    </div>
+                    <div *ngIf="destinationId">
+                        <p>Destination ID: {{ destinationId }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="relative">
+    <div class="flight-engine ">
+        <div class="container mx-auto mt-[-90px]">
+            <div class="tab-content  flex justify-center ">
+                <div id="1" class="tab1 active block">
+                    <div class="flight-tab flex flex-nowrap gap-2 mt-2 p-4">
+                        <div class="persent-one w-full relative mb-2">
+                            <i class="fa fa-map-marker absolute float-right right-2 top-2 text-lg text-gray-900"></i>
+                            <input type="text" name="dep"
+                                class="textboxstyle w-full px-4 py-2 rounded border-none outline-none bg-gray-200 text-base"
+                                id="dep" placeholder="location" [(ngModel)]="locationName">
+                        </div>
+                        <div class="persent-one less-per w-full relative mb-2">
+                            <!-- <i class="fa fa-calendar absolute left-2 top-2 text-lg text-gray-900"></i> -->
+                            <input type="date" name="dep"
+                                class="textboxstyle w-full px-4 py-2 rounded border-none outline-none bg-gray-200 text-base"
+                                id="from-date1" placeholder="Check-In" [(ngModel)]="checkin">
+                        </div>
+                        <div class="persent-one less-per w-full relative mb-2">
+                            <!-- <i class="fa fa-calendar absolute left-2 top-2 text-lg text-gray-900"></i> -->
+                            <input type="date" name="dep"
+                                class="textboxstyle w-full px-4 py-2 rounded border-none outline-none bg-gray-200 text-base"
+                                id="to-date" placeholder="Check-Out" [(ngModel)]="checkout">
+                        </div>
+                        <div class="persent-one less-btn flex items-center mt-[-18px] ml-[8px]">
+                            <button (click)="getDestId()" type="Submit"
+                                class="btn btn-info w-16 h-16 rounded-full bg-blue-500 text-[15px] text-white" id="srch"
+                                routerLink="/searchresult" routerLinkActive="active">search</button>
+                        </div>
+                    </div>
+                    <!-- <div *ngIf="destinationId" class="mt-2">
+                        <p>Destination ID: {{ destinationId }}</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="hotels.length > 0" class="ml-32">
+
+            <h2 class="text-2xl font-bold text-blue-gray-900 my-4 text-center">Available Hotels</h2>
+            <div class="result grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 !pl-[72px] mt-4">
+                <div class="" *ngFor="let hotel of hotels"
+                    class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white shadow-lg mb-5">
+                    <div class="mx-4 my-4 overflow-hidden rounded-xl shadow-md">
+                        <img [src]="hotel.photoMainUrl" alt="Hotel Image" class="object-cover w-full h-48" />
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h5 class="block font-sans text-xl font-medium text-blue-gray-900 truncate w-full">
+                                {{ hotel.name }}
+                            </h5>
+                            <p class="flex items-center gap-1.5 font-sans text-base font-normal text-blue-gray-900">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                5.0
+                            </p>
+                        </div>
+                        <p class="block font-sans text-base text-gray-700">
+                            {{ hotel.description }}
+                        </p>
+                        <div class="flex items-center gap-3 mt-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-gray-500"></i>
+                                <span class="ml-2 text-sm text-gray-500">{{ hotel.location }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <!-- <i class="fas fa-dollar-sign text-gray-500"></i> -->
+                                <span *ngIf="hotel.priceBreakdown.grossPrice.value!=null"
+                                    class="ml-2 text-sm text-gray-500">
+                                    {{ hotel.priceBreakdown.grossPrice.value }}
+                                    {{hotel.priceBreakdown.grossPrice.currency}} ,
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button (click)="navigateToResult()"
+                                class="block w-full py-2 px-4 text-center bg-gray-900 text-white rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800">
+                                Reviews
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<!-- <h2>Available Hotels:</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                <div *ngFor="let hotel of hotels"
+                    class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white shadow-lg">
+                    <div class="mx-4 mt-4 overflow-hidden rounded-xl shadow-md">
+
+                        <img [src]="hotel.photoMainUrl" alt="Hotel Image" class="object-cover w-full h-48 " />
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h5 class="block font-sans text-xl font-medium text-blue-gray-900">
+                                {{ hotel.name }}
+                            </h5>
+                            <p class="flex items-center gap-1.5 font-sans text-base font-normal text-blue-gray-900">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                5.0
+                            </p>
+                        </div>
+                        <p class="block font-sans text-base text-gray-700">
+                            {{ hotel.description }}
+                        </p>
+                        <div class="flex items-center gap-3 mt-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-gray-500"></i>
+                                <span class="ml-2 text-sm text-gray-500">{{ hotel.location }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dollar-sign text-gray-500"></i>
+                                <span class="ml-2 text-sm text-gray-500">{{ hotel.price }} {{ hotel.currency }}</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button
+                                class="block w-full py-2 px-4 text-center bg-gray-900 text-white rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800">
+                                Reviews
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+<!-- <h2>Available Hotels:</h2> -->

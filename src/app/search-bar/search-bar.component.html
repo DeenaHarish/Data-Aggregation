@@ -1,0 +1,14 @@
+<div class="relative">
+    <form (submit)="onSubmit($event)" class="flex items-center">
+        <input type="text"
+            class="bg-transparent outline-none text-white font-sans italic text-xl transition-all duration-300 ease-in-out px-4 py-2 rounded-full border-2 border-transparent focus:border-purple-500"
+            placeholder="Search" [(ngModel)]="searchTerm" [class.w-full]="isActive" [class.w-0]="!isActive"
+            (click)="toggleActive()">
+        <button type="submit"
+            class="ml-2 bg-transparent border-2 border-white text-white rounded-full p-2 hover:text-purple-500 transition-colors duration-300 ease-in-out"
+            [class.opacity-100]="isActive" [class.opacity-0]="!isActive" [class.pointer-events-auto]="isActive"
+            [class.pointer-events-none]="!isActive">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </form>
+</div>

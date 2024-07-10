@@ -1,0 +1,10 @@
+<!-- src/app/hotel-photos/hotel-photos.component.html -->
+<div *ngIf="photos && photos.length">
+    <h2>Hotel Photos</h2>
+    <div class="photos-container">
+        <img *ngFor="let photo of photos" [src]="photo.url_original" alt="Hotel Photo" class="hotel-photo">
+    </div>
+</div>
+<div *ngIf="!photos || !photos.length">
+    <p>No photos available for this hotel.</p>
+</div>

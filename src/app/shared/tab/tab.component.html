@@ -1,0 +1,26 @@
+<div class="tabs">
+    <ul class="tab-list flex text-center text-white">
+        <li class="mr-1 nav-title flex  border-b-2 border-transparent py-4" *ngFor="let tab of tabs; let i = index"
+            [class.active]="i === activeTab" (click)="selectTab(i)">
+            <i *ngIf="tab.icon" class="pr-2 {{ tab.icon }}"></i>
+            {{ tab.tabtitle }}
+        </li>
+    </ul>
+    <div class="tab-content">
+        <ng-content></ng-content>
+    </div>
+</div>
+<!-- <div>
+    <div class="nav-item">
+        <ul class="nav-list "
+            *ngFor="let tab of tabs; let i = index" (click)="selectTab(i)">
+            <li  [ngClass]="{
+                'nav-active': i === activeTab && styleType === 'nav'            }">
+                <i *ngIf="tab.icon" class="pr-2 {{ tab.icon }}"></i>
+                <span>{{ tab.tabtitle }}</span>
+                <span *ngIf="tab.badge" class="badge">{{ tab.badge }}</span>
+            </li>
+        </ul>
+    </div>
+    <ng-content></ng-content>
+</div> -->
